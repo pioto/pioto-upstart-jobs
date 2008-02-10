@@ -1,0 +1,8 @@
+# These rules fire some upstart events when network or block devices
+# are inserted or removed.
+
+SUBSYSTEM=="net", ACTION=="add", RUN+="/sbin/initctl emit network-device-added %k -eDEVNAME=%k"
+SUBSYSTEM=="net", ACTION=="remove", RUN+="/sbin/initctl emit network-device-removed %k -eDEVNAME=%k"
+
+SUBSYSTEM=="block", ACTION=="add", RUN+="/sbin/initctl emit block-device-added %k -eDEVNAME=%k"
+SUBSYSTEM=="block", ACTION=="remove", RUN+="/sbin/initctl emit block-device-removed %k -eDEVNAME=%k"
