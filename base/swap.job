@@ -1,6 +1,10 @@
 description "activate swap devices"
 author "Mike Kelly <pioto@pioto.org>"
 
+start on stopped udevtrigger ok
+stop on starting shutdown
+stop on starting reboot
+
 console output
 
 pre-start script
