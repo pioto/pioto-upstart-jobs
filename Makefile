@@ -17,7 +17,7 @@ install:
 
 dist:
 	mkdir $(PACKAGE)-$(VERSION)
-	cp Makefile README $(PACKAGE)-$(VERSION)
+	cp Makefile COPYING README $(PACKAGE)-$(VERSION)
 	$(MAKE) PACKAGE=$(PACKAGE) VERSION=$(VERSION) -C base dist
 	$(MAKE) PACKAGE=$(PACKAGE) VERSION=$(VERSION) -C udev dist
 	tar cjvf $(PACKAGE)-$(VERSION).tar.bz2 $(PACKAGE)-$(VERSION)/

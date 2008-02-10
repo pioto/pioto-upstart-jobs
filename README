@@ -2,3 +2,6 @@ Many of these jobs are based upon the upstart-jobs package from Frugalware
 Linux.
 
 The jobs in base/ are the basic jobs needed to get a nicely booting system.
+
+The rules in udev/ allow some of these jobs to know when udev detects hardware
+has been added or removed.
