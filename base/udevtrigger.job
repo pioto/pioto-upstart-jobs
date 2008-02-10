@@ -14,7 +14,7 @@ script
     
     /sbin/udevsettle --timeout=10
 
-    mount -n -t usbfs -o devgid=23,devmode=664 /proc/bus/usb
+    #mount -n -t usbfs -o devgid=23,devmode=664 usbfs /proc/bus/usb
 end script
 
 # vim: set ft=upstart et sw=4 sts=4 :

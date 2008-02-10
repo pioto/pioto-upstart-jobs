@@ -1,0 +1,17 @@
+description "set hostname"
+author "Mike Kelly <pioto@pioto.org>"
+
+start on stopped mount
+
+console output
+
+script
+    if [ ! -f /etc/hostname ]; then
+        echo "exherbo.local" >/etc/hostname
+    fi
+
+    hostname=`cat /etc/hostname | cut -f1 -d .`
+    /bin/hostname "$hostname"
+end script
+
+# vim: set ft=upstart et sw=4 sts=4 :
