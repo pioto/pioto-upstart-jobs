@@ -1,0 +1,4 @@
+Many of these jobs are based upon the upstart-jobs package from Frugalware
+Linux.
+
+The jobs in base/ are the basic jobs needed to get a nicely booting system.

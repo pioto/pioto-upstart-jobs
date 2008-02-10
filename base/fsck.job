@@ -1,0 +1,31 @@
+description "check the root fs"
+author "Mike Kelly <pioto@pioto.org>"
+
+start on stopped udevtrigger ok
+
+console output
+
+script
+    fsstate=0
+    /sbin/fsck -C -a -T / || fsstate=$?b
+
+    if [ $fsstate -ge 2 ]; then
+        if [ $fsstate -ge 4 ]; then
+            echo "Problems were found that require manual intervention."
+            echo "Dropping you to a shell."
+            /bin/sh
+        fi
+        echo "Unmounting file systems..."
+        unmount -a -r
+        mount -n -o remount,ro /
+        echo "Rebooting system."
+        sleep 2
+        /lib/annie/kill_everyone_and_reboot --reboot
+    fi
+
+    mount -w -o remount /
+    rm -f /etc/mtab
+    cp /proc/mounts /etc/mtab
+end script
+
+# vim: set ft=upstart et sw=4 sts=4 :

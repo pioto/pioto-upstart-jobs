@@ -1,0 +1,17 @@
+description "Mount filesystems"
+author "Mike Kelly <pioto@pioto.org>"
+
+start on stopped fsck ok
+
+console output
+
+script
+    /sbin/fsck -T -C -R -A -a || true
+
+    mount -a -t nonfs,nosmbfs,noproc,nosysfs,nofuse,nontfs-3g || true
+
+    rm -f /var/run/utmp
+    cat /dev/null > /var/run/utmp
+end script
+
+# vim: set ft=upstart et sw=4 sts=4 :

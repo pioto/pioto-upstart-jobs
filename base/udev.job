@@ -1,0 +1,21 @@
+description "starts udevd"
+author "Mike Kelly <pioto@pioto.org>"
+
+start on stopped mount-kernel-filesystems ok
+stop on starting shutdown
+stop on starting reboot
+
+emits block-device-added block-device-removed
+emits network-device-added network-device-removed
+
+console output
+
+pre-start script
+    if [ -e /proc/sys/kernel/hotplug ]; then
+        echo "" > /proc/sys/kernel/hotplug
+    fi
+end script
+
+exec udevd
+
+# vim: set ft=upstart et sw=4 sts=4 :

@@ -1,0 +1,14 @@
+description "activate swap devices"
+author "Mike Kelly <pioto@pioto.org>"
+
+console output
+
+pre-start script
+    /sbin/swapon -a
+end script
+
+post-stop script
+    /sbin/swapoff -a
+end script
+
+# vim: set ft=upstart et sw=4 sts=4 :

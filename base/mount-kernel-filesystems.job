@@ -1,0 +1,30 @@
+description "Mount /sys, /proc, etc"
+author "Mike Kelly <pioto@pioto.org>"
+
+start on startup
+
+console output
+
+script
+    mount -n -t proc -o nodev,noexec,nosuid proc /proc
+    mount -n -t sysfs -o nodev,noexec,nosuid sysfs /sys
+
+    # needed for udev
+    mount -t tmpfs -o nosuid udev /dev
+    mkdir -p /dev/shm
+    mkdir -p /dev/pts
+
+    mknod -m 600 /dev/console c 5 1
+    mknod -m 666 /dev/null c 1 3
+
+    ln -snf /proc/self/fd /dev/fd
+    ln -snf /proc/self/fd/0 /dev/stdin
+    ln -snf /proc/self/fd/1 /dev/stdout
+    ln -snf /proc/self/fd/2 /dev/stderr
+    ln -snf /proc/kcore /dev/core
+
+    mount -n -t tmpfs tmpfs /dev/shm
+    mount -n -t devpts -o mode=0620,gid=5 devpts /dev/pts
+end script
+
+# vim: set ft=upstart et sw=4 sts=4 :

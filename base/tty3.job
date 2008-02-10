@@ -1,0 +1,13 @@
+# tty3 - getty
+#
+# This service maintains a getty on tty3 from the point the system is
+# started until it is shut down again.
+
+start on stopped mount ok
+stop on starting shutdown
+stop on starting reboot
+
+respawn
+exec /sbin/agetty 38400 tty3
+
+# vim: set ft=upstart et sw=4 sts=4 :

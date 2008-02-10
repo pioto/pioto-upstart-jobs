@@ -1,0 +1,5 @@
+# From ciaranm
+console output
+exec /lib/annie/kill_everyone_and_reboot --poweroff
+
+# vim: set ft=upstart et sw=4 sts=4 :
