@@ -8,8 +8,8 @@ stop on starting reboot
 console output
 
 pre-start script
-    ifconfig lo 127.0.0.1/8 brd 127.255.255.255 up
-    route add -new 127.0.0.0/8 metric 0 lo
+    ifconfig lo 127.0.0.1/8 broadcast 127.255.255.255 up
+    route add -net 127.0.0.0/8 metric 0 lo
 end script
 
 post-stop script
