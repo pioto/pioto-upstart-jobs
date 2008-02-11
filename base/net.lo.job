@@ -14,7 +14,6 @@ end script
 
 post-stop script
     ifconfig lo down
-    route del 127.0.0.0/8 lo
 end script
 
 # vim: set ft=upstart et sw=4 sts=4 :
