@@ -1,0 +1,20 @@
+description "start the loopback network device"
+author "Mike Kelly <pioto@pioto.org>"
+
+start on stopped udevtrigger ok
+stop on starting shutdown
+stop on starting reboot
+
+console output
+
+pre-start script
+    ifconfig lo 127.0.0.1/8 brd 127.255.255.255 up
+    route add -new 127.0.0.0/8 metric 0 lo
+end script
+
+post-stop script
+    ifconfig lo down
+    route del 127.0.0.0/8 lo
+end script
+
+# vim: set ft=upstart et sw=4 sts=4 :
