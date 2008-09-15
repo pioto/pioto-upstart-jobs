@@ -6,13 +6,13 @@ start on started udev
 console output
 
 script
-    /sbin/udevtrigger --attr-match=dev || true
+    /sbin/udevadm trigger --attr-match=dev || true
     sleep 0.5
     
-    /sbin/udevtrigger || true
+    /sbin/udevadm trigger || true
     sleep 0.5
     
-    /sbin/udevsettle --timeout=10
+    /sbin/udevadm settle --timeout=10
 
     #mount -n -t usbfs -o devgid=23,devmode=664 usbfs /proc/bus/usb
 end script
